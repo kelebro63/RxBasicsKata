@@ -31,7 +31,7 @@ public class CountriesServiceSolvedTest {
         allCountries = CountriesTestProvider.countries();
     }
 
-    @Test
+    @Test   //+
     public void rx_CountryNameInCapitals() {
         Country testCountry = CountriesTestProvider.countries().get(0);
         String expected = testCountry.name.toUpperCase(Locale.US);
@@ -42,7 +42,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertValue(expected);
     }
 
-    @Test
+    @Test   //+
     public void rx_CountAmountOfCountries() {
         Integer expected = CountriesTestProvider.countries().size();
         TestObserver<Integer> testObserver = countriesService
@@ -52,7 +52,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertValue(expected);
     }
 
-    @Test
+    @Test   //+
     public void rx_ListPopulationOfEachCountry() {
         List<Long> expectedResult = CountriesTestProvider.populationOfCountries();
         TestObserver<Long> testObserver = countriesService
@@ -62,7 +62,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertNoErrors();
     }
 
-    @Test
+    @Test   //+
     public void rx_ListNameOfEachCountry() {
         List<String> expectedResult = CountriesTestProvider.namesOfCountries();
         TestObserver<String> testObserver = countriesService
@@ -72,7 +72,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertNoErrors();
     }
 
-    @Test
+    @Test   //+
     public void rx_ListOnly3rdAnd4thCountry() {
         List<Country> expectedResult = new ArrayList<>();
         expectedResult.add(allCountries.get(2));
@@ -85,7 +85,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertNoErrors();
     }
 
-    @Test
+    @Test   //+
     public void rx_IsAllCountriesPopulationMoreThanOneMillion_Positive() {
         TestObserver<Boolean> testObserver = countriesService
                 .isAllCountriesPopulationMoreThanOneMillion(CountriesTestProvider.countriesPopulationMoreThanOneMillion())
@@ -94,7 +94,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertNoErrors();
     }
 
-    @Test
+    @Test   //+
     public void rx_IsAllCountriesPopulationMoreThanOneMillion_Negative() {
         TestObserver<Boolean> testObserver = countriesService
                 .isAllCountriesPopulationMoreThanOneMillion(allCountries)
@@ -103,7 +103,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertNoErrors();
     }
 
-    @Test
+    @Test   //+
     public void rx_ListPopulationMoreThanOneMillion() {
         List<Country> expectedResult = CountriesTestProvider.countriesPopulationMoreThanOneMillion();
         TestObserver<Country> testObserver = countriesService
@@ -113,7 +113,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertNoErrors();
     }
 
-    @Test
+    @Test   //+
     public void rx_ListPopulationMoreThanOneMillionWithTimeoutFallbackToEmpty_When_NoTimeout() {
         FutureTask<List<Country>> futureTask = new FutureTask<>(() -> {
             TimeUnit.MILLISECONDS.sleep(100);
@@ -130,7 +130,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertNoErrors();
     }
 
-    @Test
+    @Test   //+
     public void rx_ListPopulationMoreThanOneMillionWithTimeoutFallbackToEmpty_When_Timeout() {
         FutureTask<List<Country>> futureTask = new FutureTask<>(() -> {
             TimeUnit.HOURS.sleep(1);
@@ -146,7 +146,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertNoErrors();
     }
 
-    @Test
+    @Test   //+
     public void rx_GetCurrencyUsdIfNotFound_When_CountryFound() {
         String countryRequested = "Austria";
         String expectedCurrencyValue = "EUR";
@@ -157,7 +157,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertNoErrors();
     }
 
-    @Test
+    @Test   //+
     public void rx_GetCurrencyUsdIfNotFound_When_CountryNotFound() {
         String countryRequested = "Senegal";
         String expectedCurrencyValue = "USD";
@@ -168,7 +168,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertNoErrors();
     }
 
-    @Test
+    @Test   //+
     public void rx_SumPopulationOfCountries() {
         // hint: use "reduce" operator
         TestObserver<Long> testObserver = countriesService
