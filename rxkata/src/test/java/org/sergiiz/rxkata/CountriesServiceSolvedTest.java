@@ -179,7 +179,7 @@ public class CountriesServiceSolvedTest {
     }
 
 
-    @Test
+    @Test   //+
     public void rx_MapCountriesToNamePopulation() {
         TestObserver<Map<String, Long>> values = countriesService.mapCountriesToNamePopulation(allCountries).test();
         Map<String, Long> expected = new HashMap<>();
@@ -190,7 +190,7 @@ public class CountriesServiceSolvedTest {
         values.assertNoErrors();
     }
 
-    @Test
+    @Test   //+
     public void rx_sumPopulationOfCountries() {
         // hint: use "map" operator
         TestObserver<Long> testObserver = countriesService
@@ -201,7 +201,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertNoErrors();
     }
 
-    @Test
+    @Test   //+
     public void rx_areEmittingSameSequences_Positive() {
         // hint: use "sequenceEqual" operator
         TestObserver<Boolean> testObserver = countriesService
@@ -211,7 +211,7 @@ public class CountriesServiceSolvedTest {
         testObserver.assertNoErrors();
     }
 
-    @Test
+    @Test      //+
     public void rx_areEmittingSameSequences_Negative() {
         List<Country> allCountriesDifferentSequence = new ArrayList<>(allCountries);
         Collections.swap(allCountriesDifferentSequence, 0, 1);

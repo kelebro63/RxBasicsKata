@@ -79,18 +79,22 @@ class CountriesServiceSolved implements CountriesService {
 
     @Override
     public Single<Map<String, Long>> mapCountriesToNamePopulation(List<Country> countries) {
-        return null;
+        return Observable.fromIterable(countries)
+                .toMap(country -> country.name, country -> country.population);
     }
 
     @Override
     public Observable<Long> sumPopulationOfCountries(Observable<Country> countryObservable1,
                                                      Observable<Country> countryObservable2) {
-        return null; // put your solution here
+        return countryObservable1.mergeWith(countryObservable2)
+                .map(country -> country.population)
+                .reduce((aLong, aLong2) -> aLong + aLong2)
+                .toObservable();
     }
 
     @Override
     public Single<Boolean> areEmittingSameSequences(Observable<Country> countryObservable1,
                                                     Observable<Country> countryObservable2) {
-        return null; // put your solution here
+        return Observable.sequenceEqual(countryObservable1, countryObservable2);
     }
 }
